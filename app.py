@@ -13,7 +13,7 @@ Age=st.text_input("Enter the your age")
 if st.button("Submit"):
     st.write(f"welcom to your platform {name} and your age is {Age}")
 
-data={"Names":["umar",'Sahil','Raju'],
+data={"Names":["khan",'Sahil','Raju'],
       "Place":["Bangalore","Delhi",'Chennai']
       }
 df=pd.DataFrame(data)
