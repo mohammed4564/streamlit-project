@@ -1,27 +1,5 @@
 import streamlit as st
 import pandas as pd
-import pymssql
-
-# Load the credentials from Streamlit secrets
-#username = st.secrets[""]
-#password = st.secrets[""]
-server = st.secrets["DESKTOP-2BCQ0PO\\SQLEXPRESS01"]
-database = st.secrets["DQ_Engine_DB"]
-
-# Connection string
-conn_str = f'SERVER={server};PORT=1433;DATABASE={database};UID={username};PWD={password};Trusted_connection=yes'
-
-conn = pymssql.connect(conn_str)
-cursor = conn.cursor()
-
-cursor.execute("SELECT * FROM employee")
-rows = cursor.fetchall()
-
-for row in rows:
-    st.write(row)
-
-cursor.close()
-conn.close()
 
 
 st.write('# Streamlit calculator')
