@@ -1,5 +1,28 @@
 import streamlit as st
 import pandas as pd
+import pyodbc
+
+# Load the credentials from Streamlit secrets
+username = st.secrets["sqlserver"]
+password = st.secrets["Datanoveltech@786"]
+server = st.secrets["34.47.197.23"]
+database = st.secrets["DQ_Engine_DB"]
+
+# Connection string
+conn_str = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};PORT=1433;DATABASE={database};UID={username};PWD={password}'
+
+conn = pyodbc.connect(conn_str)
+cursor = conn.cursor()
+
+cursor.execute("SELECT * FROM employee")
+rows = cursor.fetchall()
+
+for row in rows:
+    st.write(row)
+
+cursor.close()
+conn.close()
+
 
 st.write('# Streamlit calculator')
 number1= st.number_input('number 1')
