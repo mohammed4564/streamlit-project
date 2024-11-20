@@ -1,17 +1,17 @@
 import streamlit as st
 import pandas as pd
-import pyodbc
+import pymssql
 
 # Load the credentials from Streamlit secrets
-username = st.secrets["sqlserver"]
-password = st.secrets["Datanoveltech@786"]
-server = st.secrets["34.47.197.23"]
+#username = st.secrets[""]
+#password = st.secrets[""]
+server = st.secrets["DESKTOP-2BCQ0PO\\SQLEXPRESS01"]
 database = st.secrets["DQ_Engine_DB"]
 
 # Connection string
-conn_str = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};PORT=1433;DATABASE={database};UID={username};PWD={password}'
+conn_str = f'SERVER={server};PORT=1433;DATABASE={database};UID={username};PWD={password};Trusted_connection=yes'
 
-conn = pyodbc.connect(conn_str)
+conn = pymssql.connect(conn_str)
 cursor = conn.cursor()
 
 cursor.execute("SELECT * FROM employee")
